@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>x402punks endpoint</title>
+  <link rel="stylesheet" href="/public/style.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="/public/logo.svg" alt="x402" class="logo" />
+    <div class="badge">BSC • 1 USDC</div>
+    <h1>x402punks endpoint</h1>
+    <p class="sub">Оплатний endpoint по x402. Натисни, щоб отримати 402 і протестувати у x402bscan.</p>
+    <button class="btn" id="payBtn">💳 Pay 1 USDC (BSC)</button>
+    <div id="result" style="display:none;"></div>
+    <small class="meta">payer: <%= payer %><br/>payTo: <%= payTo %></small>
+  </div>
+  <script>
+    const btn = document.getElementById('payBtn');
+    const result = document.getElementById('result');
+    btn.addEventListener('click', async () => {
+      result.style.display = 'block';
+      result.textContent = 'Запит до /api/pay...';
+      try {
+        const res = await fetch('/api/pay');
+        const data = await res.json();
+        result.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        result.textContent = 'Помилка: ' + e.message;
+      }
+    });
+  </script>
+</body>
+</html>
