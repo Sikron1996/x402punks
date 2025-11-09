@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+  // ✅ Якщо фасилітатор повертає paid=true — показуємо успіх
   if (req.query && req.query.paid === "true") {
     return res.status(200).json({
       status: "success",
@@ -10,6 +11,7 @@ export default async function handler(req, res) {
   const proto = req.headers["x-forwarded-proto"] || "https";
   const resourceUrl = `${proto}://${host}/api/pay`;
 
+  // ✅ Коректна x402-відповідь
   const x402Response = {
     x402Version: 1,
     payer: "https://facilitator.x402bscan.io",
@@ -25,7 +27,7 @@ export default async function handler(req, res) {
         maxTimeoutSeconds: 600,
         asset: "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d",
 
-        // ✅ Додаємо строгий опис схеми
+        // ✅ Обов'язковий блок для проходження суворої перевірки
         outputSchema: {
           input: {
             type: "http",
@@ -34,7 +36,7 @@ export default async function handler(req, res) {
               paid: {
                 type: "boolean",
                 required: true,
-                description: "Фасилітатор повертає paid=true після успішної оплати"
+                description: "Callback з paid=true після успішної оплати"
               }
             }
           },
@@ -42,10 +44,17 @@ export default async function handler(req, res) {
             status: "string",
             message: "string"
           }
+        },
+
+        // Опціонально: можна вказати extra
+        extra: {
+          provider: "x402punks",
+          version: "usd1-v1"
         }
       }
     ]
   };
 
+  // ✅ Повертаємо 402 Payment Required
   res.status(402).json(x402Response);
 }
