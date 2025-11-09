@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>x402punks endpoint</title>
-  <link rel="stylesheet" href="/public/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x402punks endpoint USD1</title>
+  <style>
+    body { background:#0f172a; color:white; font-family:system-ui; text-align:center; margin-top:40px; }
+    iframe { border:none; border-radius:12px; width:90%; height:600px; }
+    img { width:64px; margin-bottom:12px; }
+    .info { color:#94a3b8; font-size:0.8rem; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/public/logo.svg" alt="x402" class="logo" />
-    <div class="badge">BSC • 1 USDC</div>
-    <h1>x402punks endpoint</h1>
-    <p class="sub">Оплатний endpoint по x402. Натисни, щоб отримати 402 і протестувати у x402bscan.</p>
-    <button class="btn" id="payBtn">💳 Pay 1 USDC (BSC)</button>
-    <div id="result" style="display:none;"></div>
-    <small class="meta">payer: <%= payer %><br/>payTo: <%= payTo %></small>
-  </div>
-  <script>
-    const btn = document.getElementById('payBtn');
-    const result = document.getElementById('result');
-    btn.addEventListener('click', async () => {
-      result.style.display = 'block';
-      result.textContent = 'Запит до /api/pay...';
-      try {
-        const res = await fetch('/api/pay');
-        const data = await res.json();
-        result.textContent = JSON.stringify(data, null, 2);
-      } catch (e) {
-        result.textContent = 'Помилка: ' + e.message;
-      }
-    });
-  </script>
+  <img src="/public/logo.svg" alt="x402 logo">
+  <h2>x402punks endpoint (1 USD1)</h2>
+  <p class="info">Оплата через x402bscan • мережа BSC</p>
+  <iframe src="https://x402bscan.io/invoke?resource=https://x402punks-endpoint-usd1.vercel.app/api/pay"
+    allow="clipboard-read; clipboard-write;" title="x402payment"></iframe>
+  <p class="info">payer: https://facilitator.x402bscan.io<br>payTo: 0xF97a410f2f0b64Cb5820baD63d878c3A967235AA</p>
 </body>
 </html>
