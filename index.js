@@ -10,7 +10,7 @@ const app = express();
 
 const NETWORK = process.env.NETWORK || "bsc";
 const ASSET = process.env.ASSET || "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d";
-const PAYTO = process.env.PAYTO || "0xF97a410f2f0b64Cb5820baD63d878c3A967235AA";
+const PAYTO = process.env.PAYTO || "0x6287A04a0Ca5Dad1F0b3FF05199cb500Ca45a89C";
 const MAX_AMOUNT = process.env.MAX_AMOUNT || "1";
 const DESCRIPTION = process.env.DESCRIPTION || "x402punks service payment (1 USD1)";
 const PAYER = process.env.PAYER || "https://facilitator.x402bscan.io";
