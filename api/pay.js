@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       resource: resourceUrl,
       description: "x402punks service payment (1 USD1)",
       mimeType: "application/json",
-      payTo: "0xF97a410f2f0b64Cb5820baD63d878c3A967235AA",
+      payTo: "0x6287A04a0Ca5Dad1F0b3FF05199cb500Ca45a89C",
       maxTimeoutSeconds: 600,
       asset: "0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d"
     }]
